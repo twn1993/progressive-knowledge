@@ -4,8 +4,6 @@
 
 A file-based knowledge layer that lets an agent pick a long-running project back up in **~1.5k tokens** instead of re-reading it.
 
-[![check](https://github.com/twn1993/progressive-knowledge/actions/workflows/check.yml/badge.svg)](https://github.com/twn1993/progressive-knowledge/actions/workflows/check.yml)
-
 ---
 
 ## English
@@ -161,7 +159,7 @@ Both are read-only and never modify a workspace.
 - append-only session logs;
 - evidence cards citing `_sources/A/spec.md:3` and `_sources/B/summary.csv:1`.
 
-It passes L0, L1, and L2 with no findings, and the CI workflow re-checks it on every push.
+It passes L0, L1, and L2 with no findings. `ci/check.yml` is the same check as a GitHub Actions workflow — copy it to `.github/workflows/` once your token has the `workflow` scope.
 
 ### Why this shape (design notes)
 
@@ -351,7 +349,7 @@ python scripts/check.py example             # FAIL 0，WARN 0
 - 只追加的会话日志；
 - 证据卡引用 `_sources/A/spec.md:3` 与 `_sources/B/summary.csv:1`。
 
-它在 L0/L1/L2 下均无任何发现，CI 每次推送都会重跑。
+它在 L0/L1/L2 下均无任何发现。`ci/check.yml` 是同一套检查的 GitHub Actions 版本——token 具备 `workflow` scope 后复制到 `.github/workflows/` 即可启用。
 
 ### 为什么是这个形状（设计说明）
 
