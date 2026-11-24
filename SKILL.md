@@ -1,6 +1,6 @@
 ---
 name: progressive-knowledge
-description: Set up a progressive knowledge layer for a long-running project: generate a root AGENTS.md (auto-injected by pi), a docs/ state and session tree, and runnable mechanical checks; define what to write, how to write it, what to read, and how to keep context cost low. Use for new projects, undocumented existing projects, or workflows that lose state between sessions (the agent keeps asking "where were we?"). Also use when asked to set up AGENTS.md, project memory, handoff notes, docs structure, or cross-session continuity.
+description: "Set up a progressive knowledge layer for a long-running project: generate a root AGENTS.md (auto-injected by pi), a docs/ state and session tree, and runnable mechanical checks; define what to write, how to write it, what to read, and how to keep context cost low. Use for new projects, undocumented existing projects, or workflows that lose state between sessions (the agent keeps asking \"where were we?\"). Also use when asked to set up AGENTS.md, project memory, handoff notes, docs structure, or cross-session continuity."
 metadata:
   version: "1.0"
 ---
