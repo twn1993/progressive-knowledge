@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-11-24T10:00:00+08:00",
+  "last_session": "2026-11-24_demo",
+  "phase": "evidence collection",
+  "derived_at": "2026-11-24T09:50:00+08:00",
+  "commands": {
+    "material": "ls _sources/ and sort by modification time",
+    "evidence_cards": "grep -c '^### ' docs/topic/02_evidence.md",
+    "external_confirmation": "open the ticket system and check the status column"
+  },
+  "opens": [
+    {
+      "id": "O-001",
+      "item": "Source B provided only a summary, the detail export is missing",
+      "status": "blocked",
+      "next_action": "ask the contact for the detail export, or switch to source C's equivalent definition",
+      "evidence": "docs/topic/02_evidence.md#source-b"
+    },
+    {
+      "id": "O-002",
+      "item": "First section of the draft is written and self-checked",
+      "status": "done",
+      "next_action": "—",
+      "evidence": "docs/topic/03_draft.md:1"
+    }
+  ],
+  "next_action": "fill the gap for source B, or write down the trade-off of switching to source C"
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-01-01T10:00:00+08:00",
+  "last_session": "2026-01-01_<sid>",
+  "phase": "<phase name>",
+  "derived_at": "2026-01-01T09:50:00+08:00",
+  "commands": {
+    "repo_state": "<a command or procedure that re-derives current state>",
+    "artifacts": "<a command that checks whether outputs exist>",
+    "tests": "<a command that checks whether tests pass>"
+  },
+  "opens": [
+    {
+      "id": "O-001",
+      "item": "<one sentence: where it is blocked>",
+      "status": "blocked",
+      "next_action": "<one directly executable action>",
+      "evidence": "<path/to/file:123>",
+      "blocked_by": "B-001"
+    },
+    {
+      "id": "O-002",
+      "item": "<finished, kept for the record>",
+      "status": "done",
+      "next_action": "—",
+      "evidence": "<path:line>"
+    }
+  ],
+  "next_action": "<the single thing this session should do>"
+}

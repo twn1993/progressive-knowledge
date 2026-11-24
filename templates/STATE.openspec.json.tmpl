@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-01-01T10:00:00+08:00",
+  "last_session": "2026-01-01_<sid>",
+  "phase": "<phase name>",
+  "derived_at": "2026-01-01T09:50:00+08:00",
+
+  "active_change": "<change-name or null; only one at a time>",
+  "change_state": {
+    "completed": 0,
+    "total": 0,
+    "source": "openspec status --change <name> --json"
+  },
+
+  "commands": {
+    "changes": "openspec list",
+    "change_status": "openspec status --change <name> --json",
+    "validate": "openspec validate --all",
+    "repo_state": "<a command or procedure that re-derives current state>"
+  },
+
+  "opens": [
+    {
+      "id": "O-001",
+      "item": "<one sentence: blocked on what, or what needs verification>",
+      "status": "open",
+      "next_action": "<one directly executable action>",
+      "evidence": "<path:line relative to the project root>"
+    }
+  ],
+
+  "next_action": "<the single thing this session should do>"
+}

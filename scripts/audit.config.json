@@ -1,0 +1,94 @@
+{
+  "_doc": "Copy to <workspace>/tools/audit.config.json and adjust. Keys not listed fall back to audit.py defaults.",
+  "_doc_entry": "First existing entry file wins; non-code projects may use WORKSPACE.md or BRIEF.md.",
+  "entry_files": [
+    "AGENTS.md",
+    "WORKSPACE.md",
+    "CLAUDE.md",
+    "BRIEF.md"
+  ],
+  "_doc_docs": "Document roots; if none exist, the workspace is scanned shallowly (depth <= 2).",
+  "docs_root": [
+    "docs",
+    "notes"
+  ],
+  "_doc_state": "State pointer (JSON, or key-value YAML). May also live at the root.",
+  "state_file": "docs/STATE.json",
+  "session_dir": "docs/_sessions",
+  "decisions_file": "docs/decisions.md",
+  "opens_file": "docs/opens.md",
+  "_doc_archive": "Archive directories; live documents must never route to them.",
+  "archive_dirs": [
+    "docs/_archive",
+    "docs/archive",
+    "_archive"
+  ],
+  "skip_dirs": [
+    ".git",
+    "node_modules",
+    ".venv",
+    "venv",
+    "__pycache__",
+    ".pi-subagents",
+    ".pytest_cache",
+    "dist",
+    "build",
+    "out",
+    "_kit",
+    "kit"
+  ],
+  "_doc_limits": "Line limits; index/inventory/pitfalls are relaxed. Exempt categories must be listed here.",
+  "limits": {
+    "default": 120,
+    "index": 135,
+    "inventory": 135,
+    "pitfalls": 135
+  },
+  "exempt_categories": [
+    "index",
+    "inventory",
+    "pitfalls"
+  ],
+  "exempt_files": [],
+  "_doc_markers": "Confidence vocabulary: one set only. Variants are reported as FAIL.",
+  "markers": {
+    "verified": "[verified]",
+    "inferred": "[inferred]",
+    "unverified": "[unverified]"
+  },
+  "forbidden_marker_variants": [
+    "[confirmed]",
+    "[validated]",
+    "[pending]",
+    "[unconfirmed]",
+    "[tested]",
+    "[ran]"
+  ],
+  "routing_min_rows": 5,
+  "section_max_lines": 25,
+  "_doc_dup": "Cross-file sentence similarity (3-gram Jaccard); higher is less sensitive.",
+  "similarity_threshold": 0.6,
+  "dup_max_reports": 10,
+  "_doc_budget": "Cold-start budget: entry + state + top index, estimated tokens.",
+  "budget_tokens": 8000,
+  "_doc_stale": "derived_at older than this many days is a WARN; state_lag_hours reconciles STATE against logs.",
+  "stale_days": 14,
+  "state_lag_hours": 24,
+  "_doc_floor": "P05 floor: non-index pages shorter than this are flagged (anti-fragmentation).",
+  "min_doc_lines": 15,
+  "_doc_evidence": "P22: maximum evidence citations to report.",
+  "evidence_max_reports": 15,
+  "_doc_index_cap": "Suffix index cap; stop building beyond this (large-repo protection).",
+  "suffix_index_cap": 300000,
+  "_doc_scope": "P04 scan scope: entry and top index.",
+  "volatile_scope": [
+    "entry",
+    "index"
+  ],
+  "_doc_tier": "Enable by scale: L0=6 (one-off) / L1=12 (sustained solo, recommended) / L2=22 (teams, long-lived).",
+  "tier": "L2",
+  "_doc_alt": "Extra roots used to resolve inline paths and evidence citations relative to another project root.",
+  "alt_roots": [],
+  "check_inline_paths": true,
+  "inline_path_max_reports": 12
+}

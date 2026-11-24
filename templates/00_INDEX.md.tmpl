@@ -1,0 +1,43 @@
+# <PROJECT> documentation index
+
+> One sentence: what this document set covers. **Decide on this page which single page to read**; do not read from the top.
+> Routing lives in the root `AGENTS.md §4`; this page only says what each page covers.
+
+## Contents
+
+- [1. Document map](#1-document-map)
+- [2. Conventions](#2-conventions)
+- [3. Known boundaries](#3-known-boundaries)
+- [4. State](#4-state)
+
+## 1. Document map
+
+| Tree | Covers | Does not cover | Entry |
+| --- | --- | --- | --- |
+| `<domain-a>/` | <topic> | <explicitly excluded> | [00_INDEX](<domain-a>/00_INDEX.md) |
+| `<domain-b>/` | <topic> | … | [00_INDEX](<domain-b>/00_INDEX.md) |
+
+The trees **do not overlap**: cross-cutting topics link to the other tree instead of restating it.
+
+## 2. Conventions
+
+| Marker | Meaning | Allowed action |
+| --- | --- | --- |
+| `[verified]` | has `file:line`, reproducible here | may only be downgraded, never invented |
+| `[inferred]` | follows from code or data, not executed | may be upgraded after execution, with a record |
+| `[unverified]` | must be confirmed in the real environment | only a real run removes it |
+
+- Every page ≤ `limits.default`; index / inventory / troubleshooting pages ≤ `limits.index` (exemptions live in `tools/audit.config.json`).
+- A section ≤ `section_max_lines`; tables over prose; relative links.
+- Never silently upgrade a marker; never write commit hashes.
+- Old whole pages go to `_archive/`; **they are never an entry**.
+
+## 3. Known boundaries
+
+1. <what this machine cannot do>
+2. <what the environment is missing / depends on>
+3. <one-line blocker + pointer to STATE.json>
+
+## 4. State
+
+State is not on this page: see [`STATE.json`](STATE.json) (the only authority). To get a value, run its `commands`.

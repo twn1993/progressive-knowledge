@@ -1,0 +1,88 @@
+# <PROJECT> · agent contract (OpenSpec variant)
+
+> The **only entry**. After reading, choose a path in §4; do not read in order.
+> State lives only in `docs/STATE.json`; changes live only in `openspec/changes/<name>/`.
+> This page does **not** restate OpenSpec usage — its skill docs are the source. It only says when to use it, where the boundary is, and what OpenSpec does not cover.
+
+## 0. Opening (required)
+
+1. Read `docs/STATE.json`; note `active_change` and `next_action`.
+2. Read the last 3 lines of `docs/_sessions/INDEX.md`.
+3. `last_session` ≠ newest session file ⇒ rebuild STATE from logs first.
+4. Follow §4; open exactly one document (or one change folder).
+
+## 1. What this is
+
+<One sentence: the project and its deliverable. No progress.>
+
+## 2. Capability boundary
+
+| This machine can | This machine cannot |
+| --- | --- |
+| <read/edit code, static inference> | <build / simulate / run on hardware / reach the intranet> |
+
+⇒ Never conclude "passes / works" here; give `[unverified]` plus the checklist in §8.
+
+## 3. Irreversible / high-risk
+
+| # | Never do | Consequence |
+| --- | --- | --- |
+| C1 | Edit `openspec/specs/**` by hand | The as-built spec is produced only by `openspec-archive-change`; hand edits fork it from the deltas |
+| C2 | Tick `tasks.md` boxes by hand | Progress must be a real apply artifact; ticking is forging completion |
+| C3 | Edit deltas after starting an archive | The archive merges the old delta; your edit is lost silently |
+| C4 | Overwrite rows already appended in `docs/_sessions/` | Session logs are append-only; editing history erases the state source |
+
+## 4. What to read (two paths)
+
+| I want… | Path |
+| --- | --- |
+| Change behavior / add a capability (observable acceptance criteria) | `openspec-explore` → `openspec-propose` → `openspec-apply-change` → `openspec-verify-change` → `openspec-archive-change` |
+| Only investigate / measure once / gather evidence | **no change**: session log + one `STATE.opens` row |
+| How to run it, what bites | `docs/<topic>/` |
+| Why we chose this, what was rejected | `docs/decisions.md` |
+| Where we are / what is next | `docs/STATE.json` |
+
+## 5. When a change is required
+
+| Situation | Handling |
+| --- | --- |
+| Changes externally observable behavior or acceptance criteria | **required** |
+| Only changes what we know (investigation, measurement, one run) | no change; session log + one `STATE.opens` row |
+| Implementation changed but behavior did not (refactor) | may be a change, justify in `design.md`; **do not** default to `skip_specs` |
+| Truly no spec-level change | only then `.openspec.yaml: skip_specs: true`, with the reason in `proposal.md` |
+
+**One-line test**: if you cannot say what someone will observe differently when it is done, it is not a change.
+
+## 6. State and memory (OpenSpec does not cover this layer)
+
+`docs/STATE.json` is a **projection**, not the truth:
+
+- Event sources: `docs/_sessions/` (every session) and `docs/decisions.md` (choices).
+- Required keys: `schema_version, updated_at, last_session, phase, derived_at, commands, active_change, opens[], next_action`.
+- `active_change`: the change currently in progress; `null` when none. **Only one at a time.**
+- On open: if `last_session` is not the newest session file, the previous close did not finish — rebuild before working.
+
+Session logs: one file per session under `docs/_sessions/`, named by date and sid, ≤20 lines; `INDEX.md` is append-only.
+
+## 7. Document conventions
+
+- Size, section length, budget, exemptions: **only** `tools/audit.config.json`; this page never copies numbers.
+- Exactly three markers: `[verified]` / `[inferred]` / `[unverified]`; upgrades need new evidence.
+- Evidence is `path:line` relative to the project root; the line must exist (`audit.py` checks).
+- One authority per fact; everywhere else links.
+- Living docs carry no history; choices go to `decisions.md`, whole pages to `_archive/`.
+
+## 8. Closing obligations
+
+1. **After apply**: `tasks.md` ticks come from `openspec-apply-change`; never edit them. Write one session log row.
+2. **Before archive**: `openspec validate` must pass; every acceptance criterion in `proposal.md` must be checkable.
+3. **After archive**: set `STATE.active_change` to `null`, write a session log, add a decision row if a choice was made.
+4. **After on-hardware verification**: write the measured section back and upgrade `[unverified]` (with log line numbers).
+5. **Every close**: run `python tools/audit.py . --tier L1` (or `tools/check.py`); no new FAIL.
+
+## 9. Never
+
+- Never write commit hashes, uncommitted counts, or progress percentages in the entry or indexes.
+- Never treat `openspec/specs/` as a notebook (notes belong in `docs/` or session logs).
+- Never claim "verified" on a machine that cannot verify, and never quote an `[unverified]` item as a conclusion.
+- Never keep two routing tables (this page §4 and the index page — only one may route).
