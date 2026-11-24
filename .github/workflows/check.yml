@@ -16,3 +16,5 @@ jobs:
         run: python scripts/audit.py example --tier L2
       - name: Minimal checker must be clean too
         run: python scripts/check.py example
+      - name: The example copy of check.py must not drift
+        run: cmp scripts/check.py example/tools/check.py

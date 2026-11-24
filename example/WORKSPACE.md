@@ -51,7 +51,7 @@ Admission questions (any "yes" means do not write): could the source derive it? 
 
 ## 6. Document conventions
 
-- Size, section length, budget: defined by the constants in `tools/check.py` or `tools/audit.config.json`, never copied here.
+- Size, section length, budget: defined by the constants in `tools/check.py`, never copied here.
 - Exactly three markers: `[verified]` / `[inferred]` / `[unverified]`.
 - Evidence is `path:line` relative to this project; the line must exist.
 - One authority per fact; living documents carry no history.

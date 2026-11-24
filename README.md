@@ -75,7 +75,8 @@ With pi, the entry file is injected automatically; a new session then reads the 
 | **L2** | 22 | multiple people, several branches, months |
 
 ```bash
-python scripts/audit.py <ws> --tier L1
+python scripts/audit.py <ws> --tier L1     # root script, any workspace
+python example/tools/check.py example     # the copy shipped with the example
 ```
 
 ## Verified
